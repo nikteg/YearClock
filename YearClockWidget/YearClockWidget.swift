@@ -51,7 +51,7 @@ struct YearClockWidgetEntryView : View {
 
     var body: some View {
         ZStack {
-            YearDialView()
+            YearDialView(overrideDate: entry.date)
                 .padding(8)
         }
     }
