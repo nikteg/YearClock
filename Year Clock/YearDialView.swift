@@ -95,7 +95,7 @@ struct YearDialView: View {
             let center = CGPoint(x: rect.midX, y: rect.midY)
             let ringThickness = size * 0.16
             let labelRadius = radius - ringThickness * 1.2
-            let pointerLength = radius * 0.82
+            let pointerLength = radius * 0.78
             let hubRadius = size * 0.06
             let pointerWidth = size * 0.032
 
@@ -117,7 +117,7 @@ struct YearDialView: View {
                 ForEach(0..<12, id: \.self) { i in
                     let angle = Angle.degrees(Double(i) * 30.0 - 45.0)
                     Capsule()
-                        .fill(Color.black.opacity(0.15))
+                        .fill(Color.white.opacity(0.35))
                         .frame(width: 1.0, height: radius)
                         .offset(x: 0, y: -radius/2)
                         .rotationEffect(angle)
@@ -128,7 +128,7 @@ struct YearDialView: View {
                 ForEach(0..<tickCount, id: \.self) { i in
                     let angle = Angle.degrees(Double(i) * 360.0 / Double(tickCount) + rotationOffsetDegrees)
                     let isMajor = i % 10 == 0
-                    let tickHeight = isMajor ? ringThickness * 0.60 : ringThickness * 0.42
+                    let tickHeight = isMajor ? ringThickness * 0.42 : ringThickness * 0.28
                     let tickWidth = isMajor ? max(1.5, size * 0.006) : max(1.0, size * 0.004)
                     Capsule()
                         .fill(Color.white.opacity(isMajor ? 0.45 : 0.28))
@@ -141,19 +141,47 @@ struct YearDialView: View {
                 ForEach(buildSlices(rect: rect)) { slice in
                     let centerAngle = Angle.degrees((slice.startAngle.degrees + slice.endAngle.degrees) / 2.0)
                     Text(slice.name)
-                        .font(.system(size: size * 0.09, weight: .bold, design: .rounded))
+                        .font(.system(size: size * 0.08, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.white.opacity(0.9))
                         .position(point(on: center, radius: labelRadius, angle: centerAngle))
                 }
 
                 // Pointer
-                Capsule()
-                    .fill(Color.white)
-                    .frame(width: pointerWidth, height: pointerLength)
-                    .offset(x: 0, y: -pointerLength/2)
-                    .shadow(color: Color.black.opacity(0.25), radius: 2, x: 0, y: 1)
-                    // Base orientation points up (north). Convert absolute dial angle (0=east) to view rotation.
-                    .rotationEffect(pointerTargetAngleFromEast + .degrees(-90))
+                ZStack {
+                    // soft drop shadow for depth
+                    Capsule()
+                        .fill(Color.black.opacity(0.18))
+                        .frame(width: pointerWidth, height: pointerLength)
+                        .offset(x: 0, y: -pointerLength/2 + size * 0.006)
+                        .blur(radius: 1.2)
+
+                    // main body with subtle vertical gradient
+                    Capsule()
+                        .fill(
+                            LinearGradient(colors: [
+                                Color.white.opacity(0.98),
+                                Color(white: 0.95)
+                            ], startPoint: .top, endPoint: .bottom)
+                        )
+                        .frame(width: pointerWidth, height: pointerLength)
+                        .offset(x: 0, y: -pointerLength/2)
+
+                    // edge highlight
+                    Capsule()
+                        .stroke(Color.black.opacity(0.12), lineWidth: max(1, size * 0.004))
+                        .frame(width: pointerWidth, height: pointerLength)
+                        .offset(x: 0, y: -pointerLength/2)
+
+                    // tip highlight dot
+                    Circle()
+                        .fill(
+                            RadialGradient(colors: [Color.white.opacity(0.95), Color.white.opacity(0.5)], center: .center, startRadius: 0, endRadius: pointerWidth * 0.5)
+                        )
+                        .frame(width: pointerWidth * 0.6, height: pointerWidth * 0.6)
+                        .offset(x: 0, y: -pointerLength + pointerWidth * 0.6)
+                }
+                // Base orientation points up (north). Convert absolute dial angle (0=east) to view rotation.
+                .rotationEffect(pointerTargetAngleFromEast + .degrees(-90))
 
                 // Hub
                 Circle()
