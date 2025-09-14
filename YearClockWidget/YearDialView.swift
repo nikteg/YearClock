@@ -14,7 +14,7 @@ import SwiftUI
 ///   - Uses English initials for months.
 struct YearDialView: View {
     /// For previews/testing: when set, the dial uses this date instead of `.now`.
-    var overrideDate: Date? = nil
+    var date: Date
 
     /// Global rotation applied to the month ring and separators (degrees).
     /// Negative values rotate left (counterclockwise).
@@ -103,10 +103,10 @@ struct YearDialView: View {
             let ringThickness = size * 0.16
             let labelRadius = radius - ringThickness * 1.2
             let pointerLength = radius * 0.78
-            let hubRadius = size * 0.06
-            let pointerWidth = size * 0.032
+            let hubRadius = size * 0.04
+            let pointerWidth = size * 0.03
 
-            let now = overrideDate ?? Date()
+            let now = date
             let pointerTargetAngleFromEast = angleForMonthCenter(now)
 
             ZStack {
@@ -124,21 +124,20 @@ struct YearDialView: View {
                 ForEach(0..<12, id: \.self) { i in
                     let angle = Angle.degrees(Double(i) * 30.0 - 45.0)
                     Capsule()
-                        .fill(Color.white.opacity(0.35))
-                        .frame(width: 1.0, height: radius)
+                        .fill(Color.white.opacity(0.1))
+                        .frame(width: 0.5, height: radius)
                         .offset(x: 0, y: -radius/2)
                         .rotationEffect(angle)
                 }
 
                 // Outer tick ring (small line segments around the ring)
-                let tickCount = 120
+                let tickCount = 120*2
                 ForEach(0..<tickCount, id: \.self) { i in
                     let angle = Angle.degrees(Double(i) * 360.0 / Double(tickCount) + rotationOffsetDegrees)
-                    let isMajor = i % 10 == 0
-                    let tickHeight = isMajor ? ringThickness * 0.42 : ringThickness * 0.28
-                    let tickWidth = isMajor ? max(1.5, size * 0.006) : max(1.0, size * 0.004)
+                    let tickHeight = ringThickness * 0.28
+                    let tickWidth = max(0.5, size * 0.004)
                     Capsule()
-                        .fill(Color.white.opacity(isMajor ? 0.45 : 0.28))
+                        .fill(Color.white.opacity(0.28))
                         .frame(width: tickWidth, height: tickHeight)
                         .offset(x: 0, y: -(radius - tickHeight/2 - ringThickness * 0.25))
                         .rotationEffect(angle)
@@ -188,7 +187,7 @@ struct YearDialView: View {
                         .offset(x: 0, y: -pointerLength + pointerWidth * 0.6)
                 }
                 // Base orientation points up (north). Convert absolute dial angle (0=east) to view rotation.
-                .rotationEffect(pointerTargetAngleFromEast + .degrees(-90))
+                .rotationEffect(pointerTargetAngleFromEast + .degrees(90))
 
                 // Hub
                 Circle()
@@ -284,23 +283,3 @@ extension YearDialView {
         return .degrees(angle)
     }
 }
-
-#if DEBUG
-struct YearDialView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            YearDialView(overrideDate: Calendar.current.date(from: DateComponents(year: 2025, month: 3, day: 1)))
-                .frame(width: 220, height: 220)
-                .previewDisplayName("March (Spring)")
-
-            YearDialView(overrideDate: Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 1)))
-                .frame(width: 220, height: 220)
-                .previewDisplayName("September (Fall)")
-
-            YearDialView(overrideDate: Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 1)))
-                .frame(width: 220, height: 220)
-                .previewDisplayName("December (Winter)")
-        }
-    }
-}
-#endif

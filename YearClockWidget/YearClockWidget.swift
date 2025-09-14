@@ -51,8 +51,7 @@ struct YearClockWidgetEntryView : View {
 
     var body: some View {
         ZStack {
-            YearDialView(overrideDate: entry.date)
-                .padding(8)
+            YearDialView(date: entry.date)
         }
     }
 }
@@ -63,17 +62,21 @@ struct YearClockWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
             YearClockWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .containerBackground(.clear, for: .widget)
+                .padding(6)
         }
+        .contentMarginsDisabled()
+        .containerBackgroundRemovable()
     }
 }
 
 #if DEBUG
-#Preview(as: .systemSmall) {
+#Preview("Year Clock Previews", as: .systemSmall) {
     YearClockWidget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .init())
-    SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 3, day: 1))!, configuration: .init())
-    SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 1))!, configuration: .init())
+    SimpleEntry(date: .now, configuration: .init()) // Current Month
+    SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 3, day: 1))!, configuration: .init()) // March (Spring)
+    SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 1))!, configuration: .init()) // September (Fall)
+    SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 1))!, configuration: .init()) // December (Winter)
 }
 #endif
