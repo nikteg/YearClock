@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  World Clock
+//  YearClock
 //
 //  Created by Niklas on 2025-09-14.
 //

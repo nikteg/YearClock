@@ -1,6 +1,6 @@
 //
-//  Year_Clock.swift
-//  Year Clock
+//  YearClockWidget.swift
+//  YearClockWidget
 //
 //  Created by Niklas on 2025-09-14.
 //
@@ -46,7 +46,7 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationAppIntent
 }
 
-struct Year_ClockEntryView : View {
+struct YearClockWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
@@ -57,12 +57,12 @@ struct Year_ClockEntryView : View {
     }
 }
 
-struct Year_Clock: Widget {
-    let kind: String = "Year_Clock"
+struct YearClockWidget: Widget {
+    let kind: String = "YearClockWidget"
 
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
-            Year_ClockEntryView(entry: entry)
+            YearClockWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
     }

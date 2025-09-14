@@ -1,6 +1,6 @@
 //
 //  AppIntent.swift
-//  Year Clock
+//  YearClockWidget
 //
 //  Created by Niklas on 2025-09-14.
 //
