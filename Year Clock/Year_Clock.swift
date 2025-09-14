@@ -67,13 +67,3 @@ struct Year_Clock: Widget {
         }
     }
 }
-
-#if DEBUG
-#Preview(as: .systemSmall) {
-    Year_Clock()
-} timeline: {
-    SimpleEntry(date: .now, configuration: .init())
-    SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 3, day: 1))!, configuration: .init())
-    SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 1))!, configuration: .init())
-}
-#endif

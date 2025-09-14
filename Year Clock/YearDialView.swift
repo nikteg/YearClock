@@ -277,25 +277,3 @@ extension YearDialView {
         return .degrees(angle)
     }
 }
-
-#if DEBUG
-struct YearDialView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            YearDialView(overrideDate: Calendar.current.date(from: DateComponents(year: 2025, month: 3, day: 1)))
-                .frame(width: 220, height: 220)
-                .previewDisplayName("March (Spring)")
-
-            YearDialView(overrideDate: Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 1)))
-                .frame(width: 220, height: 220)
-                .previewDisplayName("September (Fall)")
-
-            YearDialView(overrideDate: Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 1)))
-                .frame(width: 220, height: 220)
-                .previewDisplayName("December (Winter)")
-        }
-    }
-}
-#endif
-
-
