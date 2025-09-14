@@ -43,6 +43,16 @@
 		85DA97482E76CA37009A4CCB /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		85DA97582E76CA38009A4CCB /* Exceptions for "YearClockWidget" folder in "YearClockWidget" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 85DA97432E76CA37009A4CCB /* YearClockWidget */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		85DA97332E76C9DA009A4CCB /* YearClock */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -51,6 +61,9 @@
 		};
 		85DA974A2E76CA37009A4CCB /* YearClockWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				85DA97582E76CA38009A4CCB /* Exceptions for "YearClockWidget" folder in "YearClockWidget" target */,
+			);
 			path = YearClockWidget;
 			sourceTree = "<group>";
 		};
