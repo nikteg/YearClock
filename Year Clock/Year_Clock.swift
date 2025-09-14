@@ -45,12 +45,9 @@ struct Year_ClockEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
+        ZStack {
+            YearDialView()
+                .padding(8)
         }
     }
 }
@@ -65,3 +62,13 @@ struct Year_Clock: Widget {
         }
     }
 }
+
+#if DEBUG
+#Preview(as: .systemSmall) {
+    Year_Clock()
+} timeline: {
+    SimpleEntry(date: .now, configuration: .init())
+    SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 3, day: 1))!, configuration: .init())
+    SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 1))!, configuration: .init())
+}
+#endif
