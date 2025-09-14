@@ -6,14 +6,65 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		85DA97472E76CA37009A4CCB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85DA97462E76CA37009A4CCB /* WidgetKit.framework */; };
+		85DA97492E76CA37009A4CCB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85DA97482E76CA37009A4CCB /* SwiftUI.framework */; };
+		85DA97572E76CA38009A4CCB /* Year ClockExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 85DA97442E76CA37009A4CCB /* Year ClockExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		85DA97552E76CA38009A4CCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85DA97292E76C9DA009A4CCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85DA97432E76CA37009A4CCB;
+			remoteInfo = "Year ClockExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		85DA975C2E76CA38009A4CCB /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				85DA97572E76CA38009A4CCB /* Year ClockExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		85DA97312E76C9DA009A4CCB /* World Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "World Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		85DA97442E76CA37009A4CCB /* Year ClockExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Year ClockExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		85DA97462E76CA37009A4CCB /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		85DA97482E76CA37009A4CCB /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		85DA97582E76CA38009A4CCB /* Exceptions for "Year Clock" folder in "Year ClockExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 85DA97432E76CA37009A4CCB /* Year ClockExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		85DA97332E76C9DA009A4CCB /* World Clock */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "World Clock";
+			sourceTree = "<group>";
+		};
+		85DA974A2E76CA37009A4CCB /* Year Clock */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				85DA97582E76CA38009A4CCB /* Exceptions for "Year Clock" folder in "Year ClockExtension" target */,
+			);
+			path = "Year Clock";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +77,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		85DA97412E76CA37009A4CCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85DA97492E76CA37009A4CCB /* SwiftUI.framework in Frameworks */,
+				85DA97472E76CA37009A4CCB /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				85DA97332E76C9DA009A4CCB /* World Clock */,
+				85DA974A2E76CA37009A4CCB /* Year Clock */,
+				85DA97452E76CA37009A4CCB /* Frameworks */,
 				85DA97322E76C9DA009A4CCB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +103,18 @@
 			isa = PBXGroup;
 			children = (
 				85DA97312E76C9DA009A4CCB /* World Clock.app */,
+				85DA97442E76CA37009A4CCB /* Year ClockExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		85DA97452E76CA37009A4CCB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85DA97462E76CA37009A4CCB /* WidgetKit.framework */,
+				85DA97482E76CA37009A4CCB /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +127,12 @@
 				85DA972D2E76C9DA009A4CCB /* Sources */,
 				85DA972E2E76C9DA009A4CCB /* Frameworks */,
 				85DA972F2E76C9DA009A4CCB /* Resources */,
+				85DA975C2E76CA38009A4CCB /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				85DA97562E76CA38009A4CCB /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				85DA97332E76C9DA009A4CCB /* World Clock */,
@@ -69,6 +143,28 @@
 			productName = "World Clock";
 			productReference = 85DA97312E76C9DA009A4CCB /* World Clock.app */;
 			productType = "com.apple.product-type.application";
+		};
+		85DA97432E76CA37009A4CCB /* Year ClockExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85DA97592E76CA38009A4CCB /* Build configuration list for PBXNativeTarget "Year ClockExtension" */;
+			buildPhases = (
+				85DA97402E76CA37009A4CCB /* Sources */,
+				85DA97412E76CA37009A4CCB /* Frameworks */,
+				85DA97422E76CA37009A4CCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				85DA974A2E76CA37009A4CCB /* Year Clock */,
+			);
+			name = "Year ClockExtension";
+			packageProductDependencies = (
+			);
+			productName = "Year ClockExtension";
+			productReference = 85DA97442E76CA37009A4CCB /* Year ClockExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +177,9 @@
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					85DA97302E76C9DA009A4CCB = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					85DA97432E76CA37009A4CCB = {
 						CreatedOnToolsVersion = 16.4;
 					};
 				};
@@ -100,12 +199,20 @@
 			projectRoot = "";
 			targets = (
 				85DA97302E76C9DA009A4CCB /* World Clock */,
+				85DA97432E76CA37009A4CCB /* Year ClockExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		85DA972F2E76C9DA009A4CCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85DA97422E76CA37009A4CCB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +229,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		85DA97402E76CA37009A4CCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		85DA97562E76CA38009A4CCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85DA97432E76CA37009A4CCB /* Year ClockExtension */;
+			targetProxy = 85DA97552E76CA38009A4CCB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		85DA973B2E76C9DB009A4CCB /* Debug */ = {
@@ -293,6 +415,60 @@
 			};
 			name = Release;
 		};
+		85DA975A2E76CA38009A4CCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Year Clock/Year_Clock.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Year Clock/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Year Clock";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.sodapop.World-Clock.Year-Clock";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		85DA975B2E76CA38009A4CCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Year Clock/Year_Clock.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Year Clock/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Year Clock";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.sodapop.World-Clock.Year-Clock";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -310,6 +486,15 @@
 			buildConfigurations = (
 				85DA973E2E76C9DB009A4CCB /* Debug */,
 				85DA973F2E76C9DB009A4CCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85DA97592E76CA38009A4CCB /* Build configuration list for PBXNativeTarget "Year ClockExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85DA975A2E76CA38009A4CCB /* Debug */,
+				85DA975B2E76CA38009A4CCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
