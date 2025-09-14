@@ -27,25 +27,32 @@ struct YearDialView: View {
         let color: Color
     }
 
-    /// Month-specific colors approximating the visual palette in the reference image (Jan..Dec)
+    /// Month-specific colors (Jan..Dec)
     private let monthColors: [Color] = [
-        // Jan, Feb (cool blues)
-        Color(hue: 0.60, saturation: 0.55, brightness: 0.60),
-        Color(hue: 0.58, saturation: 0.55, brightness: 0.64),
-        // Mar, Apr, May (greens on the right)
-        Color(hue: 0.40, saturation: 0.70, brightness: 0.78),
-        Color(hue: 0.42, saturation: 0.66, brightness: 0.80),
-        Color(hue: 0.44, saturation: 0.62, brightness: 0.82),
-        // Jun, Jul, Aug (green-yellow to olive)
-        Color(hue: 0.18, saturation: 0.65, brightness: 0.76),
-        Color(hue: 0.16, saturation: 0.65, brightness: 0.72),
-        Color(hue: 0.14, saturation: 0.65, brightness: 0.68),
-        // Sep, Oct, Nov (gold to brown)
-        Color(hue: 0.11, saturation: 0.70, brightness: 0.64),
-        Color(hue: 0.10, saturation: 0.68, brightness: 0.58),
-        Color(hue: 0.09, saturation: 0.62, brightness: 0.54),
-        // Dec (cool blue)
-        Color(hue: 0.59, saturation: 0.55, brightness: 0.62)
+        // January - rgb(43, 89, 128)
+        Color(red: 43/255, green: 89/255, blue: 128/255),
+        // February - rgb(39, 76, 108)
+        Color(red: 39/255, green: 76/255, blue: 108/255),
+        // March - rgb(58, 96, 64)
+        Color(red: 58/255, green: 96/255, blue: 64/255),
+        // April - rgb(67, 113, 72)
+        Color(red: 67/255, green: 113/255, blue: 72/255),
+        // May - rgb(58, 96, 64)
+        Color(red: 58/255, green: 96/255, blue: 64/255),
+        // June - rgb(18, 119, 74)
+        Color(red: 18/255, green: 119/255, blue: 74/255),
+        // July - rgb(15, 141, 84)
+        Color(red: 15/255, green: 141/255, blue: 84/255),
+        // August - rgb(18, 119, 74)
+        Color(red: 18/255, green: 119/255, blue: 74/255),
+        // September - rgb(87, 88, 29)
+        Color(red: 87/255, green: 88/255, blue: 29/255),
+        // October - rgb(102, 103, 29)
+        Color(red: 102/255, green: 103/255, blue: 29/255),
+        // November - rgb(87, 88, 29)
+        Color(red: 87/255, green: 88/255, blue: 29/255),
+        // December - rgb(39, 76, 108)
+        Color(red: 39/255, green: 76/255, blue: 108/255)
     ]
 
     /// Month labels (3-letter English abbreviations)
