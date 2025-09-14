@@ -20,12 +20,17 @@ struct Provider: AppIntentTimelineProvider {
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
         var entries: [SimpleEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+        // Generate a timeline: one entry at the start of each of the next 12 months
+        // starting from the beginning of the current month. This keeps the widget
+        // refreshed on month boundaries rather than hourly.
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfThisMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: now)) ?? now
+
+        for monthOffset in 0..<12 {
+            if let monthStart = calendar.date(byAdding: .month, value: monthOffset, to: startOfThisMonth) {
+                entries.append(SimpleEntry(date: monthStart, configuration: configuration))
+            }
         }
 
         return Timeline(entries: entries, policy: .atEnd)
