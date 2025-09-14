@@ -27,20 +27,31 @@ struct YearDialView: View {
         let color: Color
     }
 
-    /// Colors for seasons (Spring, Summer, Fall, Winter)
-    private let seasonColors: [Color] = [
-        Color(hue: 0.35, saturation: 0.65, brightness: 0.75), // Spring - green
-        Color(hue: 0.12, saturation: 0.70, brightness: 0.80), // Summer - yellow/olive
-        Color(hue: 0.09, saturation: 0.65, brightness: 0.70), // Fall - orange/brown
-        Color(hue: 0.60, saturation: 0.45, brightness: 0.70)  // Winter - blue
+    /// Month-specific colors approximating the visual palette in the reference image (Jan..Dec)
+    private let monthColors: [Color] = [
+        // Jan, Feb (cool blues)
+        Color(hue: 0.60, saturation: 0.55, brightness: 0.60),
+        Color(hue: 0.58, saturation: 0.55, brightness: 0.64),
+        // Mar, Apr, May (greens on the right)
+        Color(hue: 0.40, saturation: 0.70, brightness: 0.78),
+        Color(hue: 0.42, saturation: 0.66, brightness: 0.80),
+        Color(hue: 0.44, saturation: 0.62, brightness: 0.82),
+        // Jun, Jul, Aug (green-yellow to olive)
+        Color(hue: 0.18, saturation: 0.65, brightness: 0.76),
+        Color(hue: 0.16, saturation: 0.65, brightness: 0.72),
+        Color(hue: 0.14, saturation: 0.65, brightness: 0.68),
+        // Sep, Oct, Nov (gold to brown)
+        Color(hue: 0.11, saturation: 0.70, brightness: 0.64),
+        Color(hue: 0.10, saturation: 0.68, brightness: 0.58),
+        Color(hue: 0.09, saturation: 0.62, brightness: 0.54),
+        // Dec (cool blue)
+        Color(hue: 0.59, saturation: 0.55, brightness: 0.62)
     ]
 
     /// Month labels (3-letter English abbreviations)
     private let monthInitials = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
-    /// Month to season index mapping (0:Spring, 1:Summer, 2:Fall, 3:Winter)
-    /// Jan, Feb -> Winter; Mar, Apr, May -> Spring; Jun, Jul, Aug -> Summer; Sep, Oct, Nov -> Fall; Dec -> Winter
-    private let monthToSeason: [Int] = [3,3,0,0,0,1,1,1,2,2,2,3]
+    // No season mapping needed; using month-specific colors
 
     /// Build slices so that Spring (Mar) is centered on the right, Fall (Sep) on the left.
     /// We will place March at angle 0° (pointing right), and progress clockwise.
@@ -64,14 +75,12 @@ struct YearDialView: View {
 
             let startDeg = Double(dialIndex) * degreesPerMonth + rotationOffsetDegrees
             let endDeg = startDeg + degreesPerMonth
-            let seasonIndex = monthToSeason[monthIndex]
-
             let slice = MonthSlice(
                 id: monthIndex,
                 name: monthInitials[monthIndex],
                 startAngle: .degrees(startDeg),
                 endAngle: .degrees(endDeg),
-                color: seasonColors[seasonIndex]
+                color: monthColors[monthIndex]
             )
             slices.append(slice)
         }
@@ -88,7 +97,7 @@ struct YearDialView: View {
             let labelRadius = radius - ringThickness * 1.2
             let pointerLength = radius * 0.82
             let hubRadius = size * 0.06
-            let pointerWidth = size * 0.055
+            let pointerWidth = size * 0.032
 
             let now = overrideDate ?? Date()
             let pointerTargetAngleFromEast = angleForMonthCenter(now)
@@ -104,13 +113,27 @@ struct YearDialView: View {
                         .fill(slice.color)
                 }
 
-                // Month separators
+                // Month separators (12 spokes)
                 ForEach(0..<12, id: \.self) { i in
                     let angle = Angle.degrees(Double(i) * 30.0 - 45.0)
                     Capsule()
                         .fill(Color.black.opacity(0.15))
                         .frame(width: 1.0, height: radius)
                         .offset(x: 0, y: -radius/2)
+                        .rotationEffect(angle)
+                }
+
+                // Outer tick ring (small line segments around the ring)
+                let tickCount = 120
+                ForEach(0..<tickCount, id: \.self) { i in
+                    let angle = Angle.degrees(Double(i) * 360.0 / Double(tickCount) + rotationOffsetDegrees)
+                    let isMajor = i % 10 == 0
+                    let tickHeight = isMajor ? ringThickness * 0.60 : ringThickness * 0.42
+                    let tickWidth = isMajor ? max(1.5, size * 0.006) : max(1.0, size * 0.004)
+                    Capsule()
+                        .fill(Color.white.opacity(isMajor ? 0.45 : 0.28))
+                        .frame(width: tickWidth, height: tickHeight)
+                        .offset(x: 0, y: -(radius - tickHeight/2 - ringThickness * 0.25))
                         .rotationEffect(angle)
                 }
 
