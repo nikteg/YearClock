@@ -13,6 +13,7 @@ struct ContentView: View {
         VStack {
             Button("Reload Widgets") {
                 WidgetCenter.shared.reloadAllTimelines()
+                WidgetCenter.shared.reloadTimelines(ofKind: "YearClockWidget")
             }
         }
         .padding()

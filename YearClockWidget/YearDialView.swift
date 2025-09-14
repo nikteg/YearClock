@@ -148,7 +148,7 @@ struct YearDialView: View {
                 ForEach(buildSlices(rect: rect)) { slice in
                     let centerAngle = Angle.degrees((slice.startAngle.degrees + slice.endAngle.degrees) / 2.0)
                     Text(slice.name)
-                        .font(.system(size: size * 0.08, weight: .bold, design: .rounded))
+                        .font(.system(size: size * 0.04, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.white.opacity(0.9))
                         .position(point(on: center, radius: labelRadius, angle: centerAngle))
                 }
